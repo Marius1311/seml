@@ -20,8 +20,11 @@ def get_collection(collection_name, mongodb_config=None, suffix=None):
 
 def get_mongo_client(db_name, host, port, username, password, **kwargs):
     import pymongo
-    client = pymongo.MongoClient(host, int(port), username=username, password=password,
-                             authSource=db_name, **kwargs)
+    from pymongo.server_api import ServerApi
+    
+    uri = 'mongodb+srv://' + username + ':' + password + '@' + host + '/?retryWrites=true&w=majority&ssl=true'
+    client = pymongo.MongoClient(uri, port=int(port), server_api=ServerApi('1'), **kwargs)
+
     return client
 
 
