@@ -66,7 +66,7 @@ slurm:
   max_simultaneous_jobs: 4  # Restrict number of simultaneously running jobs per job array
   sbatch_options:
     gres: gpu:1       # num GPUs
-    mem: 16G          # memory
+    mem-per-cpu: 16G          # memory
     cpus-per-task: 2  # num cores
     time: 0-08:00     # max time, D-HH:MM
 
